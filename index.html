@@ -1,0 +1,1470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>CPA 速记卡</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+  --bg: #0a0c10;
+  --surface: #111318;
+  --surface2: #181b22;
+  --border: #252a35;
+  --accent: #5b8af5;
+  --accent2: #f5a623;
+  --accent3: #4ecb8d;
+  --red: #f56b6b;
+  --text: #e8ecf4;
+  --text2: #8b92a8;
+  --text3: #5a6178;
+  --acct: #5b8af5;
+  --tax: #f5a623;
+  --law: #4ecb8d;
+  --other: #a78bfa;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Header */
+header {
+  padding: 20px 16px 16px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(180deg, rgba(91,138,245,0.08) 0%, transparent 100%);
+}
+
+header h1 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+header h1::before {
+  content: '72';
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 14px;
+  background: linear-gradient(135deg, var(--accent), #8b6ff5);
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 6px;
+}
+
+header p {
+  font-size: 12px;
+  color: var(--text2);
+  margin-top: 6px;
+}
+
+/* Exam countdown bar */
+.countdown-bar {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+.countdown-item {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 14px;
+  text-align: center;
+  min-width: 80px;
+}
+
+.countdown-item .num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.countdown-item .num.acct { color: var(--acct); }
+.countdown-item .num.tax { color: var(--tax); }
+.countdown-item .num.law { color: var(--law); }
+
+.countdown-item .label {
+  font-size: 10px;
+  color: var(--text3);
+  margin-top: 2px;
+}
+
+/* Nav */
+nav {
+  display: flex;
+  gap: 2px;
+  padding: 12px 16px 0;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+}
+
+nav button {
+  background: none;
+  border: none;
+  padding: 10px 16px 14px;
+  color: var(--text2);
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  white-space: nowrap;
+  transition: all 0.15s;
+  position: relative;
+}
+
+nav button.active {
+  color: var(--text);
+  border-bottom-color: var(--accent);
+}
+
+nav button .badge {
+  position: absolute;
+  top: 6px;
+  right: 2px;
+  background: var(--red);
+  color: #fff;
+  font-size: 9px;
+  padding: 1px 5px;
+  border-radius: 8px;
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Pages */
+.page { display: none; padding: 16px; max-width: 600px; margin: 0 auto; }
+.page.active { display: block; }
+
+.sec-title {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text3);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sec-title::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+/* Input cards */
+.input-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.form-row-full { margin-bottom: 10px; }
+
+input, select, textarea {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.15s;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: var(--accent);
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+  line-height: 1.8;
+}
+
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%238b92a8' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 32px;
+}
+
+/* Template selector */
+.template-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.template-tab {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s;
+}
+
+.template-tab.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Importance stars */
+.importance {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.importance label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: var(--text2);
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+}
+
+.importance input[type="radio"] { display: none; }
+
+.importance input[type="radio"]:checked + label {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: rgba(91,138,245,0.1);
+}
+
+/* Buttons */
+.btn-add {
+  background: linear-gradient(135deg, var(--accent), #6b9cf7);
+  color: #fff;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  width: 100%;
+  transition: opacity 0.15s;
+}
+
+.btn-add:active { opacity: 0.85; }
+
+/* Filter bar */
+.filter-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filter-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Cards */
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+}
+
+.card.acct::before { background: var(--acct); }
+.card.tax::before { background: var(--tax); }
+.card.law::before { background: var(--law); }
+.card.other::before { background: var(--other); }
+
+.card-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.card-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 500;
+}
+
+.tag-acct { background: rgba(91,138,245,0.12); color: var(--acct); }
+.tag-tax { background: rgba(245,166,35,0.12); color: var(--tax); }
+.tag-law { background: rgba(78,203,141,0.12); color: var(--law); }
+.tag-other { background: rgba(167,139,250,0.12); color: var(--other); }
+
+.stars {
+  color: var(--accent2);
+  font-size: 12px;
+  letter-spacing: 2px;
+}
+
+.card-title {
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.card-section {
+  margin-bottom: 10px;
+}
+
+.card-section .label {
+  font-size: 10px;
+  color: var(--text3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+
+.card-section .content {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.card-section .content code {
+  background: rgba(91,138,245,0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent);
+}
+
+.tip-box {
+  background: rgba(245,166,35,0.08);
+  border: 1px solid rgba(245,166,35,0.2);
+  border-radius: 6px;
+  padding: 10px;
+  margin-top: 10px;
+}
+
+.tip-box .tip-label {
+  font-size: 10px;
+  color: var(--accent2);
+  margin-bottom: 4px;
+}
+
+.tip-box .tip-content {
+  font-size: 12px;
+  color: var(--text2);
+  line-height: 1.7;
+}
+
+.card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text3);
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-sm {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.btn-sm:hover { border-color: var(--accent); color: var(--accent); }
+.btn-sm.master { border-color: var(--accent3); color: var(--accent3); }
+.btn-sm.danger { border-color: var(--red); color: var(--red); }
+.btn-sm.review { border-color: var(--accent2); color: var(--accent2); }
+
+/* Review mode */
+.review-container {
+  perspective: 1000px;
+}
+
+.review-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px 20px;
+  margin-bottom: 12px;
+  text-align: center;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.review-card .card-tag {
+  margin: 0 auto 16px;
+}
+
+.review-card .review-question {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+
+.review-card .review-hint {
+  font-size: 12px;
+  color: var(--text3);
+  margin-bottom: 24px;
+}
+
+.review-card .answer-reveal {
+  display: none;
+  text-align: left;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border);
+  animation: fadeIn 0.3s ease;
+}
+
+.review-card .answer-reveal.show {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.review-card .answer-section {
+  margin-bottom: 14px;
+}
+
+.review-card .answer-section .label {
+  font-size: 10px;
+  color: var(--accent3);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+
+.review-card .answer-section .text {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.review-card .answer-section .text code {
+  background: rgba(78,203,141,0.1);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: var(--accent3);
+}
+
+.review-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-reveal {
+  background: linear-gradient(135deg, var(--accent), #6b9cf7);
+  color: #fff;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-reveal:active { opacity: 0.85; }
+
+.btn-action {
+  padding: 12px 28px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.btn-action.yes {
+  background: rgba(78,203,141,0.15);
+  border: 1px solid var(--accent3);
+  color: var(--accent3);
+}
+
+.btn-action.no {
+  background: rgba(245,107,107,0.15);
+  border: 1px solid var(--red);
+  color: var(--red);
+}
+
+.review-progress {
+  text-align: center;
+  color: var(--text3);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.stat-card .stat-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 32px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.stat-card .stat-label {
+  font-size: 12px;
+  color: var(--text2);
+}
+
+.stat-card .stat-sub {
+  font-size: 11px;
+  color: var(--text3);
+  margin-top: 4px;
+}
+
+/* Subject progress */
+.subject-progress {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 12px;
+}
+
+.subject-progress h3 {
+  font-size: 14px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress-item {
+  margin-bottom: 14px;
+}
+
+.progress-item:last-child { margin-bottom: 0; }
+
+.progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.progress-header .name {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.progress-header .count {
+  font-size: 12px;
+  color: var(--text3);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.progress-bar {
+  background: var(--surface2);
+  border-radius: 4px;
+  height: 8px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 4px;
+  transition: width 0.5s ease;
+}
+
+/* Review schedule */
+.schedule-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+
+.schedule-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.schedule-item:last-child { border-bottom: none; }
+
+.schedule-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.schedule-content {
+  flex: 1;
+}
+
+.schedule-title {
+  font-size: 13px;
+  margin-bottom: 2px;
+}
+
+.schedule-meta {
+  font-size: 11px;
+  color: var(--text3);
+}
+
+/* Empty state */
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text3);
+}
+
+.empty-state .icon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state p {
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.7);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.modal-overlay.show { display: flex; }
+
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.modal h3 {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.modal p {
+  font-size: 13px;
+  color: var(--text2);
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-actions button {
+  flex: 1;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.modal-actions .cancel {
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
+
+.modal-actions .confirm {
+  background: var(--red);
+  border: 1px solid var(--red);
+  color: #fff;
+}
+
+/* Difficulty indicator */
+.difficulty {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: auto;
+}
+
+.difficulty span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border);
+}
+
+.difficulty span.active { background: var(--accent2); }
+
+/* Next review badge */
+.next-review {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: rgba(245,166,35,0.1);
+  color: var(--accent2);
+}
+
+.next-review.urgent {
+  background: rgba(245,107,107,0.1);
+  color: var(--red);
+}
+
+.next-review.done {
+  background: rgba(78,203,141,0.1);
+  color: var(--accent3);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>CPA 速记卡</h1>
+  <p>距离考试还有 <strong id="exam-countdown" style="color:var(--accent);font-family:'JetBrains Mono',monospace">--</strong> 天 · 会计·税法·经济法</p>
+</header>
+
+<div class="countdown-bar">
+  <div class="countdown-item">
+    <div class="num acct" id="stat-acct-total">0</div>
+    <div class="label">会计</div>
+  </div>
+  <div class="countdown-item">
+    <div class="num tax" id="stat-tax-total">0</div>
+    <div class="label">税法</div>
+  </div>
+  <div class="countdown-item">
+    <div class="num law" id="stat-law-total">0</div>
+    <div class="label">经济法</div>
+  </div>
+  <div class="countdown-item">
+    <div class="num" style="color:var(--other)" id="stat-other-total">0</div>
+    <div class="label">其他</div>
+  </div>
+  <div class="countdown-item">
+    <div class="num" style="color:var(--accent2)" id="stat-today-review">0</div>
+    <div class="label">今日待复习</div>
+  </div>
+</div>
+
+<nav>
+  <button class="active" onclick="showPage('input')">✏️ 录入</button>
+  <button onclick="showPage('list')">📋 速记本</button>
+  <button onclick="showPage('review')">🎯 背诵<span class="badge" id="nav-review-count" style="display:none">0</span></button>
+  <button onclick="showPage('stats')">📊 进度</button>
+</nav>
+
+<!-- 录入页面 -->
+<div id="page-input" class="page active">
+  <p class="sec-title">录入新知识点</p>
+  
+  <div class="input-card">
+    <div class="template-tabs">
+      <div class="template-tab active" onclick="setTemplate('acct')">📘 会计</div>
+      <div class="template-tab" onclick="setTemplate('tax')">📗 税法</div>
+      <div class="template-tab" onclick="setTemplate('law')">📕 经济法</div>
+      <div class="template-tab" onclick="setTemplate('other')">📓 其他</div>
+    </div>
+    
+    <div class="form-row">
+      <select id="in-chapter">
+        <option value="">选择章节</option>
+      </select>
+      <input type="text" id="in-tag" placeholder="标签（如：长投、增值税）">
+    </div>
+    
+    <div class="importance">
+      <input type="radio" name="imp" id="imp3" value="3" checked>
+      <label for="imp3">★★★ 必考</label>
+      <input type="radio" name="imp" id="imp2" value="2">
+      <label for="imp2">★★ 重点</label>
+      <input type="radio" name="imp" id="imp1" value="1">
+      <label for="imp1">★ 了解</label>
+    </div>
+    
+    <div class="form-row-full">
+      <input type="text" id="in-question" placeholder="问题 / 考点（正面）">
+    </div>
+    
+    <div class="form-row-full">
+      <textarea id="in-answer" placeholder="答案 / 结论（背面）"></textarea>
+    </div>
+    
+    <div class="form-row-full">
+      <textarea id="in-mnemonic" placeholder="记忆口诀 / 技巧（可选）&#10;例：权益法分红冲成本 → '分红冲本不确认'"></textarea>
+    </div>
+    
+    <div class="form-row">
+      <select id="in-difficulty">
+        <option value="1">难度：简单</option>
+        <option value="2" selected>难度：中等</option>
+        <option value="3">难度：困难</option>
+      </select>
+      <input type="text" id="in-source" placeholder="来源（轻一P87）">
+    </div>
+    
+    <button class="btn-add" onclick="addItem()">+ 录入速记卡</button>
+  </div>
+  
+  <div class="input-card" style="border-left:3px solid var(--accent2)">
+    <div style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--accent2)">💡 录入建议</div>
+    <p style="font-size:12px;color:var(--text2);line-height:1.8">
+      <strong>会计</strong>：问题写"什么情况下..."，答案写分录或判断标准<br>
+      <strong>税法</strong>：问题写"XX税率/扣除标准"，答案写数字+适用条件<br>
+      <strong>经济法</strong>：问题写"XX法条规定"，答案写关键词+数字<br>
+      <strong>口诀</strong>：越短越好，押韵或谐音更容易记住
+    </p>
+  </div>
+</div>
+
+<!-- 列表页面 -->
+<div id="page-list" class="page">
+  <p class="sec-title">我的速记本</p>
+  
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterList('all',this)">全部</button>
+    <button class="filter-btn" onclick="filterList('会计',this)">会计</button>
+    <button class="filter-btn" onclick="filterList('税法',this)">税法</button>
+    <button class="filter-btn" onclick="filterList('经济法',this)">经济法</button>
+    <button class="filter-btn" onclick="filterList('其他',this)">其他</button>
+    <button class="filter-btn" onclick="filterList('urgent',this)">🔥 紧急复习</button>
+    <button class="filter-btn" onclick="filterList('mastered',this)">✅ 已掌握</button>
+  </div>
+  
+  <div id="list-container">
+    <div class="empty-state">
+      <div class="icon">📋</div>
+      <p>暂无速记卡<br>去"录入"页面添加第一条</p>
+    </div>
+  </div>
+</div>
+
+<!-- 背诵页面 -->
+<div id="page-review" class="page">
+  <p class="sec-title">背诵模式 · 回忆→验证→强化</p>
+  
+  <div class="review-container">
+    <div id="review-card-area">
+      <div class="empty-state">
+        <div class="icon">🎯</div>
+        <p>暂无待复习内容<br>去录入或标记一些"待复习"</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 统计页面 -->
+<div id="page-stats" class="page">
+  <p class="sec-title">学习进度</p>
+  
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--text)" id="st-total">0</div>
+      <div class="stat-label">总速记卡</div>
+      <div class="stat-sub" id="st-today-add">今日新增 0</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent2)" id="st-review">0</div>
+      <div class="stat-label">待复习</div>
+      <div class="stat-sub">含今日到期</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent3)" id="st-mastered">0</div>
+      <div class="stat-label">已掌握</div>
+      <div class="stat-sub" id="st-master-rate">掌握率 0%</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-num" style="color:var(--accent)" id="st-urgent">0</div>
+      <div class="stat-label">紧急复习</div>
+      <div class="stat-sub">超过3天未复习</div>
+    </div>
+  </div>
+  
+  <div class="subject-progress">
+    <h3>📊 各科目掌握情况</h3>
+    <div id="subject-stats"></div>
+  </div>
+  
+  <div class="schedule-card" style="margin-top:12px">
+    <h3 style="font-size:14px;margin-bottom:14px">📅 复习计划</h3>
+    <div id="schedule-list"></div>
+  </div>
+</div>
+
+<!-- 删除确认弹窗 -->
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal">
+    <h3>确认删除</h3>
+    <p>删除后无法恢复，确定要删除这条速记卡吗？</p>
+    <div class="modal-actions">
+      <button class="cancel" onclick="closeModal()">取消</button>
+      <button class="confirm" onclick="confirmDelete()">删除</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// 数据存储
+let items = JSON.parse(localStorage.getItem('cpa_cards') || '[]');
+let currentFilter = 'all';
+let currentTemplate = 'acct';
+let reviewQueue = [];
+let reviewIndex = 0;
+let deleteTargetId = null;
+
+// 章节模板
+const chapters = {
+  acct: ['长期股权投资', '金融工具', '收入', '企业合并', '合并报表', '租赁', '所得税', '股份支付', '债务重组', '其他'],
+  tax: ['增值税', '消费税', '企业所得税', '个人所得税', '房产税', '土地增值税', '印花税', '其他小税种'],
+  law: ['公司法', '证券法', '合同法', '破产法', '票据法', '物权法', '反垄断法'],
+  other: ['其他']
+};
+
+// 考试倒计时
+function updateCountdown() {
+  const exam = new Date('2026-08-29');
+  const now = new Date();
+  const diff = Math.ceil((exam - now) / (1000 * 60 * 60 * 24));
+  document.getElementById('exam-countdown').textContent = diff > 0 ? diff : 0;
+}
+updateCountdown();
+
+// 页面切换
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+  
+  if(id === 'list') renderList();
+  if(id === 'review') initReview();
+  if(id === 'stats') renderStats();
+}
+
+// 模板切换
+function setTemplate(type) {
+  currentTemplate = type;
+  document.querySelectorAll('.template-tab').forEach(t => t.classList.remove('active'));
+  event.target.classList.add('active');
+  
+  const select = document.getElementById('in-chapter');
+  select.innerHTML = '<option value="">选择章节</option>';
+  chapters[type].forEach(c => {
+    select.innerHTML += `<option value="${c}">${c}</option>`;
+  });
+}
+
+// 初始化章节选项
+setTemplate('acct');
+
+// 计算下次复习时间（艾宾浩斯）
+function getNextReviewDate(reviewCount) {
+  const intervals = [1, 2, 4, 7, 15, 30]; // 天数
+  const days = intervals[Math.min(reviewCount, intervals.length - 1)];
+  const next = new Date();
+  next.setDate(next.getDate() + days);
+  return next.toISOString();
+}
+
+// 检查是否需要复习
+function isDueForReview(item) {
+  if(item.status === 'mastered') return false;
+  if(!item.nextReview) return true;
+  return new Date(item.nextReview) <= new Date();
+}
+
+// 获取复习紧急程度
+function getUrgency(item) {
+  if(item.status === 'mastered') return 'done';
+  if(!item.nextReview) return 'normal';
+  const days = Math.ceil((new Date() - new Date(item.nextReview)) / (1000 * 60 * 60 * 24));
+  if(days > 3) return 'urgent';
+  if(days > 0) return 'due';
+  return 'normal';
+}
+
+// 录入
+function addItem() {
+  const subjectMap = { acct: '会计', tax: '税法', law: '经济法', other: '其他' };
+  const subject = subjectMap[currentTemplate];
+  const chapter = document.getElementById('in-chapter').value;
+  const tag = document.getElementById('in-tag').value.trim();
+  const importance = document.querySelector('input[name="imp"]:checked').value;
+  const question = document.getElementById('in-question').value.trim();
+  const answer = document.getElementById('in-answer').value.trim();
+  const mnemonic = document.getElementById('in-mnemonic').value.trim();
+  const difficulty = document.getElementById('in-difficulty').value;
+  const source = document.getElementById('in-source').value.trim();
+  
+  if(!question || !answer) {
+    alert('请填写问题和答案');
+    return;
+  }
+  
+  items.unshift({
+    id: Date.now(),
+    subject,
+    chapter: chapter || tag || '未分类',
+    tag,
+    importance: parseInt(importance),
+    question,
+    answer,
+    mnemonic,
+    difficulty: parseInt(difficulty),
+    source,
+    status: 'new',
+    reviewCount: 0,
+    nextReview: new Date().toISOString(),
+    created: new Date().toISOString(),
+    lastReviewed: null
+  });
+  
+  save();
+  updateNavBadge();
+  
+  // 清空表单
+  document.getElementById('in-question').value = '';
+  document.getElementById('in-answer').value = '';
+  document.getElementById('in-mnemonic').value = '';
+  document.getElementById('in-source').value = '';
+  document.getElementById('in-tag').value = '';
+  
+  alert('录入成功！已加入今日复习队列');
+}
+
+function save() {
+  localStorage.setItem('cpa_cards', JSON.stringify(items));
+}
+
+// 渲染列表
+function renderList() {
+  const container = document.getElementById('list-container');
+  let list = items;
+  
+  if(currentFilter === 'urgent') {
+    list = items.filter(i => getUrgency(i) === 'urgent');
+  } else if(currentFilter === 'mastered') {
+    list = items.filter(i => i.status === 'mastered');
+  } else if(currentFilter !== 'all') {
+    list = items.filter(i => i.subject === currentFilter);
+  }
+  
+  if(!list.length) {
+    container.innerHTML = '<div class="empty-state"><div class="icon">📋</div><p>该分类暂无记录</p></div>';
+    return;
+  }
+  
+  container.innerHTML = list.map(item => {
+    const urgency = getUrgency(item);
+    const stars = '★'.repeat(item.importance) + '☆'.repeat(3 - item.importance);
+    const subjectClass = item.subject === '会计' ? 'acct' : item.subject === '税法' ? 'tax' : item.subject === '经济法' ? 'law' : 'other';
+    const tagClass = 'tag-' + subjectClass;
+    
+    let reviewBadge = '';
+    if(urgency === 'urgent') {
+      reviewBadge = '<span class="next-review urgent">🔥 紧急复习</span>';
+    } else if(urgency === 'due') {
+      reviewBadge = '<span class="next-review">⏰ 今日到期</span>';
+    } else if(item.status === 'mastered') {
+      reviewBadge = '<span class="next-review done">✅ 已掌握</span>';
+    }
+    
+    return `
+    <div class="card ${subjectClass}">
+      <div class="card-header">
+        <span class="card-tag ${tagClass}">${item.subject}${item.chapter ? ' · ' + item.chapter : ''}</span>
+        <span class="stars">${stars}</span>
+        ${reviewBadge}
+      </div>
+      <div class="card-title">${item.question}</div>
+      <div class="card-section">
+        <div class="label">答案</div>
+        <div class="content">${item.answer.replace(/\n/g, '<br>')}</div>
+      </div>
+      ${item.mnemonic ? `
+      <div class="tip-box">
+        <div class="tip-label">💡 记忆口诀</div>
+        <div class="tip-content">${item.mnemonic}</div>
+      </div>
+      ` : ''}
+      <div class="card-meta">
+        <span>📄 ${item.source || '无来源'}</span>
+        <span>🔄 复习${item.reviewCount}次</span>
+        <span>📅 ${new Date(item.created).toLocaleDateString('zh-CN')}</span>
+      </div>
+      <div class="card-actions">
+        <button class="btn-sm review" onclick="quickReview(${item.id})">开始复习</button>
+        <button class="btn-sm master" onclick="markMastered(${item.id})">标记掌握</button>
+        <button class="btn-sm danger" onclick="showDeleteModal(${item.id})">删除</button>
+      </div>
+    </div>
+    `;
+  }).join('');
+}
+
+function filterList(f, btn) {
+  currentFilter = f;
+  document.querySelectorAll('#page-list .filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderList();
+}
+
+// 快速复习（从列表页）
+function quickReview(id) {
+  const item = items.find(i => i.id === id);
+  if(!item) return;
+  
+  // 找到该卡片在复习队列中的位置
+  reviewQueue = [item];
+  reviewIndex = 0;
+  showReviewCard();
+  showPage('review');
+  
+  // 更新导航按钮
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('nav button')[2].classList.add('active');
+}
+
+// 背诵模式
+function initReview() {
+  // 获取所有待复习的卡片
+  reviewQueue = items.filter(i => isDueForReview(i));
+  
+  // 按紧急程度排序
+  reviewQueue.sort((a, b) => {
+    const urgencyA = getUrgency(a) === 'urgent' ? 3 : getUrgency(a) === 'due' ? 2 : 1;
+    const urgencyB = getUrgency(b) === 'urgent' ? 3 : getUrgency(b) === 'due' ? 2 : 1;
+    return urgencyB - urgencyA;
+  });
+  
+  reviewIndex = 0;
+  showReviewCard();
+}
+
+function showReviewCard() {
+  const area = document.getElementById('review-card-area');
+  
+  if(reviewIndex >= reviewQueue.length) {
+    if(reviewQueue.length === 0) {
+      area.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">🎉</div>
+          <p>暂无待复习内容<br>所有卡片都已掌握或未到复习时间</p>
+        </div>
+      `;
+    } else {
+      area.innerHTML = `
+        <div class="empty-state">
+          <div class="icon">🎉</div>
+          <p>本轮复习完成！<br>共复习 ${reviewQueue.length} 张卡片</p>
+          <button class="btn-add" style="margin-top:20px;width:auto;padding:12px 32px" onclick="initReview()">再来一轮</button>
+        </div>
+      `;
+    }
+    return;
+  }
+  
+  const item = reviewQueue[reviewIndex];
+  const subjectClass = item.subject === '会计' ? 'acct' : item.subject === '税法' ? 'tax' : item.subject === '经济法' ? 'law' : 'other';
+  const tagClass = 'tag-' + subjectClass;
+  const stars = '★'.repeat(item.importance) + '☆'.repeat(3 - item.importance);
+  
+  area.innerHTML = `
+    <div class="review-card">
+      <div class="card-tag ${tagClass}">${item.subject} · ${item.chapter}</div>
+      <div class="difficulty" style="margin:0 auto 12px">
+        ${[1,2,3].map(d => `<span class="${d <= item.difficulty ? 'active' : ''}"></span>`).join('')}
+      </div>
+      <div class="review-question">${item.question}</div>
+      <div class="review-hint">先回忆答案，点击显示验证</div>
+      <button class="btn-reveal" onclick="showAnswer()">显示答案</button>
+      
+      <div class="answer-reveal" id="answer-box">
+        <div class="answer-section">
+          <div class="label">答案</div>
+          <div class="text">${item.answer.replace(/\n/g, '<br>')}</div>
+        </div>
+        ${item.mnemonic ? `
+        <div class="answer-section">
+          <div class="label">记忆口诀</div>
+          <div class="text" style="color:var(--accent2)">${item.mnemonic}</div>
+        </div>
+        ` : ''}
+        <div class="answer-section">
+          <div class="label">来源</div>
+          <div class="text" style="font-size:12px;color:var(--text3)">${item.source || '无'} · ${stars}</div>
+        </div>
+        <div class="review-actions">
+          <button class="btn-action yes" onclick="reviewResult(true)">✅ 记住了</button>
+          <button class="btn-action no" onclick="reviewResult(false)">🔄 没记住</button>
+        </div>
+      </div>
+    </div>
+    <div class="review-progress">${reviewIndex + 1} / ${reviewQueue.length} · 剩余 ${reviewQueue.length - reviewIndex - 1} 张</div>
+  `;
+}
+
+function showAnswer() {
+  document.getElementById('answer-box').classList.add('show');
+}
+
+function reviewResult(remembered) {
+  const item = reviewQueue[reviewIndex];
+  if(!item) return;
+  
+  item.lastReviewed = new Date().toISOString();
+  
+  if(remembered) {
+    item.reviewCount++;
+    if(item.reviewCount >= 4) {
+      item.status = 'mastered';
+    }
+    item.nextReview = getNextReviewDate(item.reviewCount);
+  } else {
+    item.reviewCount = 0;
+    item.status = 'new';
+    item.nextReview = new Date().toISOString();
+  }
+  
+  save();
+  updateNavBadge();
+  reviewIndex++;
+  showReviewCard();
+}
+
+function markMastered(id) {
+  const item = items.find(i => i.id === id);
+  if(item) {
+    item.status = 'mastered';
+    item.reviewCount = 4;
+    save();
+    renderList();
+    updateNavBadge();
+    renderStats();
+  }
+}
+
+// 删除
+function showDeleteModal(id) {
+  deleteTargetId = id;
+  document.getElementById('delete-modal').classList.add('show');
+}
+
+function closeModal() {
+  document.getElementById('delete-modal').classList.remove('show');
+  deleteTargetId = null;
+}
+
+function confirmDelete() {
+  if(deleteTargetId) {
+    items = items.filter(i => i.id !== deleteTargetId);
+    save();
+    renderList();
+    updateNavBadge();
+    renderStats();
+  }
+  closeModal();
+}
+
+// 统计
+function renderStats() {
+  const total = items.length;
+  const mastered = items.filter(i => i.status === 'mastered').length;
+  const review = items.filter(i => isDueForReview(i)).length;
+  const urgent = items.filter(i => getUrgency(i) === 'urgent').length;
+  const todayAdd = items.filter(i => {
+    const d = new Date(i.created);
+    const now = new Date();
+    return d.toDateString() === now.toDateString();
+  }).length;
+  
+  document.getElementById('st-total').textContent = total;
+  document.getElementById('st-review').textContent = review;
+  document.getElementById('st-mastered').textContent = mastered;
+  document.getElementById('st-urgent').textContent = urgent;
+  document.getElementById('st-today-add').textContent = `今日新增 ${todayAdd}`;
+  document.getElementById('st-master-rate').textContent = `掌握率 ${total ? Math.round(mastered/total*100) : 0}%`;
+  
+  // 顶部统计
+  document.getElementById('stat-acct-total').textContent = items.filter(i => i.subject === '会计').length;
+  document.getElementById('stat-tax-total').textContent = items.filter(i => i.subject === '税法').length;
+  document.getElementById('stat-law-total').textContent = items.filter(i => i.subject === '经济法').length;
+  document.getElementById('stat-other-total').textContent = items.filter(i => i.subject === '其他').length;
+  document.getElementById('stat-today-review').textContent = review;
+  
+  // 科目进度
+  const subjects = ['会计', '税法', '经济法', '其他'];
+  const colors = ['#5b8af5', '#f5a623', '#4ecb8d', '#a78bfa'];
+  document.getElementById('subject-stats').innerHTML = subjects.map((sub, idx) => {
+    const subItems = items.filter(i => i.subject === sub);
+    const subTotal = subItems.length;
+    const subMastered = subItems.filter(i => i.status === 'mastered').length;
+    const pct = subTotal ? Math.round(subMastered / subTotal * 100) : 0;
+    return `
+      <div class="progress-item">
+        <div class="progress-header">
+          <span class="name" style="color:${colors[idx]}">● ${sub}</span>
+          <span class="count">${subMastered}/${subTotal}</span>
+        </div>
+        <div class="progress-bar">
+          <div class="progress-fill" style="width:${pct}%;background:${colors[idx]}"></div>
+        </div>
+      </div>
+    `;
+  }).join('');
+  
+  // 复习计划
+  const dueItems = items.filter(i => i.status !== 'mastered').slice(0, 5);
+  document.getElementById('schedule-list').innerHTML = dueItems.map(item => {
+    const urgency = getUrgency(item);
+    const dotColor = urgency === 'urgent' ? 'var(--red)' : urgency === 'due' ? 'var(--accent2)' : 'var(--accent3)';
+    const days = item.nextReview ? Math.ceil((new Date(item.nextReview) - new Date()) / (1000 * 60 * 60 * 24)) : 0;
+    return `
+      <div class="schedule-item">
+        <div class="schedule-dot" style="background:${dotColor}"></div>
+        <div class="schedule-content">
+          <div class="schedule-title">${item.question.substring(0, 20)}${item.question.length > 20 ? '...' : ''}</div>
+          <div class="schedule-meta">${item.subject} · ${days <= 0 ? '今日到期' : days + '天后'}</div>
+        </div>
+      </div>
+    `;
+  }).join('') || '<p style="color:var(--text3);font-size:12px">暂无待复习计划</p>';
+}
+
+function updateNavBadge() {
+  const count = items.filter(i => isDueForReview(i)).length;
+  const badge = document.getElementById('nav-review-count');
+  if(count > 0) {
+    badge.textContent = count > 99 ? '99+' : count;
+    badge.style.display = 'inline';
+  } else {
+    badge.style.display = 'none';
+  }
+}
+
+// 初始化
+updateNavBadge();
+renderStats();
+</script>
+</body>
+</html>
